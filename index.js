@@ -6,12 +6,11 @@ const LendingPoolV2Artifact = require('@aave/protocol-v2/artifacts/contracts/pro
 var ethers = require('ethers');
 
 // Environment Variables
-const userAddress = process.env['userAddress'] // User Wallet Address
-const contractAddress = process.env['contractAddress']; // Address of the AAVE lendingpool contract
-// https://docs.aave.com/developers/v/2.0/deployed-contracts/deployed-contracts
+const userAddress = process.env.userAddress; // User Wallet Address
+const contractAddress = process.env.contractAddress; // Address of the AAVE lendingpool contract
 
 // Ethers Config
-var provider = new ethers.providers.JsonRpcProvider(process.env['infuraProjectUrl']);
+var provider = new ethers.providers.JsonRpcProvider(process.env.infuraProjectUrl);
 
 // AAVE Contract Config
 const abi = LendingPoolV2Artifact.abi;
@@ -25,7 +24,7 @@ provider.getBlockNumber().then(function(blockNumber) {
 
 // Getting the Account Information
 aaveContract.getUserAccountData(userAddress).then(function(userAccountData) {
-	var healthFactorHex = userAccountData['healthFactor']['_hex'];
+	var healthFactorHex = userAccountData.healthFactor._hex;
 	var healthFactorWei = BigInt(healthFactorHex);
 	console.log('health factor hex: ' + healthFactorHex);
 	console.log('health factor wei: ' + healthFactorWei);
