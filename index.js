@@ -10,7 +10,7 @@ const userAddress = process.env.userAddress; // User Wallet Address
 const contractAddress = process.env.contractAddress; // Address of the AAVE lendingpool contract
 
 // Ethers Config
-var provider = new ethers.providers.JsonRpcProvider(process.env.infuraProjectUrl);
+var provider = new ethers.providers.JsonRpcProvider(process.env.jsonRpcUrl);
 
 // AAVE Contract Config
 const abi = LendingPoolV2Artifact.abi;
