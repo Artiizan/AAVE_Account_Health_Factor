@@ -1,20 +1,21 @@
 // Challenge as proposed by Wintermute
 // Written by Brandon Grant - https://github.com/Artiizan
 
-const LendingPoolV2Artifact = require('@aave/protocol-v2/artifacts/contracts/protocol/lendingpool/LendingPool.sol/LendingPool.json');
+//const LendingPoolV2Artifact = require('@aave/protocol-v2/artifacts/contracts/protocol/lendingpool/LendingPool.sol/LendingPool.json');
+const LendingPoolV3Artifact = require('@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json');
 // ABI Docs: https://docs.aave.com/developers/the-core-protocol/lendingpool#getuserconfiguration
 var ethers = require('ethers');
 
 // Environment Variables
 const userAddress = process.env.userAddress; // User Wallet Address
-const contractAddress = process.env.contractAddress || '0x4F01AeD16D97E3aB5ab2B501154DC9bb0F1A5A2C'; // Address of the AAVE lendingpool contract
+const contractAddress = process.env.contractAddress || '0x794a61358D6845594F94dc1DB02A252b5b4814aD'; // Address of the AAVE lendingpool contract
 const healthFactorThreshold = parseFloat(process.env.healthFactorThreshold) || 1.5
 
 // Ethers Config
 var provider = new ethers.providers.JsonRpcProvider(process.env.jsonRpcUrl || 'https://api.avax.network/ext/bc/C/rpc');
 
 // AAVE Contract Config
-const abi = LendingPoolV2Artifact.abi;
+const abi = LendingPoolV3Artifact.abi;
 var aaveContract = new ethers.Contract(contractAddress, abi, provider);
 
 // Getting the current Block
